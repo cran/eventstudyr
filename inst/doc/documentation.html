@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>documentation</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">documentation</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(eventstudyr)</span></code></pre></div>
+<div id="event-studies" class="section level2">
+<h2>Event Studies</h2>
+<p>Linear panel models, and the event-study plots that often accompany
+them, are popular tools for learning about policy effects.</p>
+</div>
+<div id="eventstudyr" class="section level2">
+<h2>eventstudyr</h2>
+<p><code>eventstudyr</code> facilitates estimating linear panel
+event-study models and constructing event-study plots following the
+suggestions in <a href="https://www.nber.org/system/files/working_papers/w29170/w29170.pdf">Freyaldenhoven
+<em>et al.</em> (2021)</a>. In particular, it provides functionality
+for:</p>
+<ul>
+<li>depicting cumulative estimated effects of a policy relative to a
+user-controlled normalized period</li>
+<li>adding confidence intervals and sup-t confidence bands</li>
+<li>testing for the presence of “pre-trends” and stable dynamics
+post-event</li>
+<li>plotting the least “wiggly” confound consistent with the
+estimates</li>
+</ul>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>We will use the <code>df_sample_dynamic</code> dataset to demonstrate
+the basic functionality of <code>eventstudyr</code>. These sample data
+are from the <a href="https://data.nber.org/data-appendix/w29170/">replication
+archive</a> for Freyaldenhoven et al. (2021). The documentation can be
+accessed using <code>?df_sample_dynamic</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df_sample_dynamic)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2000   12</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_sample_dynamic)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 12</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      id eventtime     t     z y_base eta_m y_jump_m y_smooth_m x_jump_m eta_r</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     1        32     1     0 -0.609 0.180     41.6       41.6   0.684      1</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     1        32     2     0 -0.870 0.180     41.3       41.3   0.0167     1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     1        32     3     0 -0.906 0.180     41.3       41.3   0.153      1</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     1        32     4     0  0.148 0.180     42.3       42.3  -0.930      1</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     1        32     5     0  0.579 0.180     42.8       42.8  -0.316      1</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6     1        32     6     0 -0.340 0.180     41.8       41.8   1.69       1</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: y_r &lt;dbl&gt;, x_r &lt;dbl&gt;</span></span></code></pre></div>
+</div>
+<div id="eventstudy" class="section level2">
+<h2>EventStudy()</h2>
+<p><code>EventStudy()</code> estimates the regression model from
+Equation (2) in Freyaldenhoven et al. (2021) and returns a list object
+that stores the estimation results (as an lm() object) as well as the
+arguments given in the function call. It accepts variables specifying
+the outcome, policy, ID and time variables. One must also specify the
+number of periods in the past before which the past values of the policy
+are not supposed to affect the value of the outcome and the number of
+periods in the future after which the future values of the policy are
+not supposed to affect the value of the outcome today. The function
+optionally accepts variables specifying the controls, the time window,
+whether fixed effects should be included, and the period to be used for
+normalization.</p>
+<p>Here is an example using the sample data:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">EventStudy</span>(<span class="at">estimator =</span> <span class="st">&quot;OLS&quot;</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> df_sample_dynamic,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">outcomevar =</span> <span class="st">&quot;y_jump_m&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">policyvar =</span> <span class="st">&quot;z&quot;</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">idvar =</span> <span class="st">&quot;id&quot;</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">timevar =</span> <span class="st">&quot;t&quot;</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">post =</span> <span class="dv">3</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">pre =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>(results<span class="sc">$</span>output)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; estimatr::lm_robust(formula = prepared_model_formula, data = prepared_data, </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     clusters = get(idvar), fixed_effects = ~get(idvar) + get(timevar), </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     se_type = &quot;stata&quot;)</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Standard error type:  stata </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Estimate Std. Error t value  Pr(&gt;|t|) CI Lower CI Upper DF</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; z_fd         0.8309     0.1332  6.2355 1.014e-07  0.56309   1.0986 49</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; z_fd_lag1    0.8552     0.1766  4.8419 1.328e-05  0.50024   1.2101 49</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; z_fd_lag2    0.6326     0.1538  4.1123 1.491e-04  0.32347   0.9417 49</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; z_fd_lag3    0.2464     0.1830  1.3465 1.843e-01 -0.12132   0.6140 49</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; z_fd_lead2   0.1238     0.1748  0.7085 4.820e-01 -0.22744   0.4751 49</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; z_fd_lead3   0.1752     0.1618  1.0829 2.842e-01 -0.14997   0.5004 49</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; z_lead3      0.2390     0.1433  1.6683 1.016e-01 -0.04891   0.5270 49</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; z_lag4       0.1428     0.1270  1.1241 2.664e-01 -0.11244   0.3979 49</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.9997 ,    Adjusted R-squared:  0.9997</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared (proj. model):  0.05327 , Adjusted R-squared (proj. model):  -0.001353 </span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F-statistic (proj. model): 10.44 on 8 and 49 DF,  p-value: 2.142e-08</span></span></code></pre></div>
+<details>
+<summary>
+Click for <code>results$arguments</code>
+</summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Estimator</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>estimator</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;OLS&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Data</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt;   id eventtime t z     y_base eta_m y_jump_m y_smooth_m    x_jump_m eta_r</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 1  1        32 1 0 -0.6087238  0.18 41.57128   41.57128  0.68367314     1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 2  1        32 2 0 -0.8699341  0.18 41.31007   41.31007  0.01667022     1</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 3  1        32 3 0 -0.9059790  0.18 41.27402   41.27402  0.15259252     1</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 4  1        32 4 0  0.1482184  0.18 42.32822   42.32822 -0.93015540     1</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 5  1        32 5 0  0.5785761  0.18 42.75858   42.75858 -0.31635490     1</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt;        y_r       x_r z_fd z_fd_lag1 z_fd_lag2 z_fd_lag3 z_fd_lead1 z_fd_lead2</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 1 1.891276 0.5520976   NA        NA        NA        NA          0          0</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 2 1.630066 2.3021448    0        NA        NA        NA          0          0</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 3 1.594021 1.0289093    0         0        NA        NA          0          0</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 4 2.648218 0.2615794    0         0         0        NA          0          0</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 5 3.078576 1.2146608    0         0         0         0          0          0</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt;   z_fd_lead3 z_lag4 z_lead3</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 1          0     NA       1</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 2          0     NA       1</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 3          0     NA       1</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 4          0     NA       1</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; 5          0      0       1</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Variables</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>outcomevar</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;y_jump_m&quot;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>outcomevar</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;y_jump_m&quot;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>policyvar</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z&quot;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>idvar</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;id&quot;</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>timevar</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;t&quot;</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>controls</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Proxies</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>proxy</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>proxyIV</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Fixed Effects</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>FE</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>TFE</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Periods</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>post</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] 3</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>overidpost</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] 1</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>pre</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] 0</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>overidpre</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] 3</span></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Normalization</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>normalize</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] -1</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>normalization_column</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z_fd_lead1&quot;</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Cluster</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>cluster</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Eventstudy Coefficient</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>eventstudy_coefficients</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z_fd&quot;       &quot;z_fd_lag1&quot;  &quot;z_fd_lag2&quot;  &quot;z_fd_lag3&quot;  &quot;z_fd_lead2&quot;</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  <span class="co">#&gt; [6] &quot;z_fd_lead3&quot; &quot;z_lead3&quot;    &quot;z_lag4&quot;</span></span></code></pre></div>
+</details>
+</div>
+<div id="eventstudyplot" class="section level2">
+<h2>EventStudyPlot()</h2>
+<p><code>EventStudyPlot()</code> prepares an event-study plot based on
+the suggestions in Freyaldenhoven et al. (2021).</p>
+<p>This function is designed to use the output of the
+<code>EventStudy()</code> and returns a ggplot object. Here is an
+example of using the function with some default settings:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>eventstudy_estimates_ols <span class="ot">&lt;-</span> <span class="fu">EventStudy</span>(<span class="at">estimator =</span> <span class="st">&quot;OLS&quot;</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">data =</span> df_sample_dynamic,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">outcomevar =</span> <span class="st">&quot;y_jump_m&quot;</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">policyvar =</span> <span class="st">&quot;z&quot;</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">idvar =</span> <span class="st">&quot;id&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">timevar =</span> <span class="st">&quot;t&quot;</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">post =</span> <span class="dv">3</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">pre =</span> <span class="dv">0</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">EventStudyPlot</span>(<span class="at">estimates =</span> eventstudy_estimates_ols,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">xtitle =</span> <span class="st">&quot;Event time&quot;</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">ytitle =</span> <span class="st">&quot;Coefficient&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>Freyaldenhoven, S., Hansen, C., Pérez, J.P. and Shapiro, J.M., 2021.
+Visualization, identification, and estimation in the linear panel
+event-study design (No. w29170). National Bureau of Economic
+Research.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
