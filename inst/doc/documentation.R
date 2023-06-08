@@ -9,12 +9,12 @@ library(eventstudyr)
 
 ## ----Data preview-------------------------------------------------------------
 
-dim(df_sample_dynamic)
-head(df_sample_dynamic)
+dim(example_data)
+head(example_data)
 
 ## ----Basic Eventstudy Example - Show Code, eval = FALSE-----------------------
 #  results <- EventStudy(estimator = "OLS",
-#                        data = df_sample_dynamic,
+#                        data = example_data,
 #                        outcomevar = "y_jump_m",
 #                        policyvar = "z",
 #                        idvar = "id",
@@ -24,7 +24,7 @@ head(df_sample_dynamic)
 
 ## ----Basic Eventstudy Example - Run Code, echo = FALSE------------------------
 results <- EventStudy(estimator = "OLS",
-                      data = df_sample_dynamic,
+                      data = example_data,
                       outcomevar = "y_jump_m",
                       policyvar = "z",
                       idvar = "id",
@@ -76,7 +76,7 @@ results$arguments$eventstudy_coefficients
 
 ## ----EventStudyPlot example 1, fig.dim = c(7, 5)------------------------------
 eventstudy_estimates_ols <- EventStudy(estimator = "OLS",
-                                       data = df_sample_dynamic,
+                                       data = example_data,
                                        outcomevar = "y_jump_m",
                                        policyvar = "z",
                                        idvar = "id",
