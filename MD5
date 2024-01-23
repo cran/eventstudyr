@@ -1,4 +1,4 @@
-e1691103cfbede4114945786ed5e94d2 *DESCRIPTION
+5c420b40d48f4f273d0f690f534e862f *DESCRIPTION
 a92c1d76c0cb13b4ab26de65db4c99c1 *LICENSE
 17def03f889c10bce83a3bbebf1b34e1 *LICENSE.note
 ba543b92a0a260d1bb35a0ebdab58287 *NAMESPACE
@@ -14,7 +14,7 @@ d80042ccdd4ce6ef63289f0185efde2c *R/ComputeShifts.R
 f17a32b2885f05a6b24051bd0d2d7e0e *R/EventStudyPlot.R
 a26d129f8eb2005c45a1cc4529d99097 *R/PrepareModelFormula.R
 0bba1fa74f1605ba45fc61c09de7469a *R/PreparePlottingData.R
-72b36318edb2bf4c17cf65865ab37eeb *R/SmPathHelpers.R
+d6a3306a818148a1c727017f403f88fe *R/SmPathHelpers.R
 95597924144be774efa8de08220554d5 *R/TestLinear.R
 4df22a1f7fb120dbaf1ed2db94a680ff *R/data.R
 22109ead151ebcebba616d98382d628d *R/sysdata.rda
@@ -22,9 +22,9 @@ a26d129f8eb2005c45a1cc4529d99097 *R/PrepareModelFormula.R
 0e7eb7dc9683a9a2faa06a530645f6d1 *build/vignette.rds
 21afc7bee9bc096f7983c3fff65f8b11 *data/example_data.rda
 14ee96f40bd5b6b150b873377c861537 *inst/CITATION
-636f54dbe06ba7ded4db340029157589 *inst/doc/documentation.R
+0c66627d7a71815e7ba959ac3974aa19 *inst/doc/documentation.R
 0e7a7b2adfadf4d61e131323377bba89 *inst/doc/documentation.Rmd
-35ec06f1b6dba6e1a951da62992487c8 *inst/doc/documentation.html
+2b6e6f1ca770e65b0ca5cdadd6e22e2c *inst/doc/documentation.html
 764587a456692c9a30fbcc46765ef9c2 *man/EventStudy.Rd
 4d3d1926307423e873b56a05dce151d4 *man/EventStudyPlot.Rd
 0b99f0251d4eb31b5ed7480633b260d0 *man/TestLinear.Rd
