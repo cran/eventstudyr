@@ -33,7 +33,7 @@ results <- EventStudy(estimator = "OLS",
                       pre = 0)
 
 ## ----Basic Eventstudy Example - Show Results 1, echo=TRUE, eval=TRUE----------
-    summary(results$output)
+summary(results$output)
 
 ## -----------------------------------------------------------------------------
 ## Estimator
@@ -54,7 +54,7 @@ results$arguments$controls
 results$arguments$proxy
 results$arguments$proxyIV
 
-## Fixed Effects
+## Fixed effects
 results$arguments$FE
 results$arguments$TFE
 
@@ -71,7 +71,7 @@ results$arguments$normalization_column
 ## Cluster
 results$arguments$cluster
 
-## Eventstudy Coefficient
+## Eventstudy coefficients
 results$arguments$eventstudy_coefficients
 
 ## ----EventStudyPlot example 1, fig.dim = c(7, 5)------------------------------
