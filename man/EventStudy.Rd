@@ -22,7 +22,10 @@ EventStudy(
   overidpre = post + pre,
   normalize = -1 * (pre + 1),
   cluster = TRUE,
-  anticipation_effects_normalization = TRUE
+  anticipation_effects_normalization = TRUE,
+  allow_duplicate_id = FALSE,
+  avoid_internal_copy = FALSE,
+  kernel = "estimatr"
 )
 }
 \arguments{
@@ -73,6 +76,12 @@ Defaults to TRUE. Must be TRUE if FE is TRUE.}
 
 \item{anticipation_effects_normalization}{If set to TRUE, runs the default process and switches coefficient to be normalized to 0
 when there are anticipation effects. If set to FALSE, does not make the switch. Defaults to TRUE.}
+
+\item{allow_duplicate_id}{If TRUE, the function estimates a regression where duplicated ID-time rows are weighted by their duplication count. If FALSE, the function raises an error if duplicate unit-time keys exist in the input data. Default is FALSE.}
+
+\item{avoid_internal_copy}{If TRUE, the function avoids making an internal deep copy of the input data, and instead directly modifies the input data.table. Default is FALSE.}
+
+\item{kernel}{Accepts one of "estimatr" or "fixest". If "estimatr" is specified, uses the estimatr package for estimation. If "fixest" is specified, uses the fixest package for estimation. Defaults to "estimatr" (deprecated - will change to "fixest" in a future release).}
 }
 \value{
 A list that contains, under "output", the estimation output as an lm_robust object, and under "arguments", the arguments passed to the function.
@@ -92,7 +101,8 @@ eventstudy_model <-
     idvar = "id",
     timevar = "t",
     pre = 0, post = 3,
-    normalize = -1
+    normalize = -1,
+    kernel = "fixest"
   )
 
 ### Access estimated model
@@ -101,7 +111,8 @@ eventstudy_model$output
 summary(eventstudy_model$output)
 
 ### data.frame of estimates
-estimatr::tidy(eventstudy_model$output)
+fixest::coeftable(eventstudy_model$output) # for kernel='fixest'
+# estimatr::tidy(eventstudy_model$output) # for kernel='estimatr'
 
 ### Access arguments
 eventstudy_model$arguments
@@ -121,6 +132,7 @@ eventstudy_model_dyn <-
     pre  = 2, overidpre  = 4,
     normalize = - 3,
     cluster = TRUE,
+    kernel = "fixest",
     anticipation_effects_normalization = TRUE
   )
 
@@ -138,7 +150,8 @@ eventstudy_model_static <-
     FE = TRUE, TFE = TRUE,
     post = 0, overidpost = 0,
     pre  = 0, overidpre  = 0,
-    cluster = TRUE
+    cluster = TRUE,
+    kernel = "fixest"
   )
 
 summary(eventstudy_model_static$output)
@@ -155,7 +168,8 @@ eventstudy_model_unbal <-
     idvar = "id",
     timevar = "t",
     pre = 0, post = 3,
-    normalize = -1
+    normalize = -1,
+    kernel = "fixest"
   )
 
 summary(eventstudy_model_unbal$output)
@@ -174,7 +188,8 @@ eventstudy_model_iv <-
     post = 2, overidpost = 1,
     pre  = 0, overidpre  = 3,
     normalize = -1,
-    cluster = TRUE
+    cluster = TRUE,
+    kernel = "fixest"
   )
 
 summary(eventstudy_model_iv$output)

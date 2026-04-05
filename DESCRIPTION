@@ -1,6 +1,6 @@
 Package: eventstudyr
 Title: Estimation and Visualization of Linear Panel Event Studies
-Version: 1.1.4
+Version: 1.2.0
 Authors@R: 
     c(person(given = "Simon",
            family = "Freyaldenhoven",
@@ -38,18 +38,18 @@ Authors@R:
 Description: Estimates linear panel event study models. Plots coefficients following the recommendations in Freyaldenhoven et al. (2021) <doi:10.3386/w29170>. Includes sup-t bands, testing for key hypotheses, least wiggly path through the Wald region. Allows instrumental variables estimation following Freyaldenhoven et al. (2019) <doi:10.1257/aer.20180609>.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Imports: car, data.table, dplyr, estimatr, ggplot2, MASS, rlang,
-        pracma, stats, stringr
+Imports: car, data.table, dplyr, estimatr, fixest, ggplot2, MASS,
+        rlang, pracma, stats, stringr
 VignetteBuilder: knitr
 LazyData: true
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Suggests: rmarkdown, knitr, testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Depends: R (>= 3.5.0)
 URL: https://github.com/JMSLab/eventstudyr
 BugReports: https://github.com/JMSLab/eventstudyr/issues
 NeedsCompilation: no
-Packaged: 2025-07-03 14:39:53 UTC; el_he
+Packaged: 2026-04-05 12:27:04 UTC; el_he
 Author: Simon Freyaldenhoven [aut],
   Christian Hansen [aut],
   Jorge Pérez Pérez [aut],
@@ -63,4 +63,4 @@ Author: Simon Freyaldenhoven [aut],
   Ryan Kessler [cph]
 Maintainer: Santiago Hermo <santiago.hermo@monash.edu>
 Repository: CRAN
-Date/Publication: 2025-07-03 15:00:02 UTC
+Date/Publication: 2026-04-05 12:40:09 UTC

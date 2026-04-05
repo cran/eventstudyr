@@ -19,8 +19,8 @@ head(example_data)
 #                        policyvar = "z",
 #                        idvar = "id",
 #                        timevar = "t",
-#                        post = 3,
-#                        pre = 0)
+#                        post = 3, pre = 0,
+#                        kernel = "fixest")
 
 ## ----Basic Eventstudy Example - Run Code, echo = FALSE------------------------
 results <- EventStudy(estimator = "OLS",
@@ -29,8 +29,8 @@ results <- EventStudy(estimator = "OLS",
                       policyvar = "z",
                       idvar = "id",
                       timevar = "t",
-                      post = 3,
-                      pre = 0)
+                      post = 3, pre = 0,
+                      kernel = "fixest")
 
 ## ----Basic Eventstudy Example - Show Results 1, echo=TRUE, eval=TRUE----------
 summary(results$output)
@@ -81,8 +81,8 @@ eventstudy_estimates_ols <- EventStudy(estimator = "OLS",
                                        policyvar = "z",
                                        idvar = "id",
                                        timevar = "t",
-                                       post = 3,
-                                       pre = 0)
+                                       post = 3, pre = 0,
+                                       kernel = "fixest")
  
 EventStudyPlot(estimates = eventstudy_estimates_ols,
                xtitle = "Event time",

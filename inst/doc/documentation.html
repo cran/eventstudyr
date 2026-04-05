@@ -48,8 +48,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,7 +61,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -406,110 +407,109 @@ normalization.</p>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                      <span class="at">policyvar =</span> <span class="st">&quot;z&quot;</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                      <span class="at">idvar =</span> <span class="st">&quot;id&quot;</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                      <span class="at">timevar =</span> <span class="st">&quot;t&quot;</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                      <span class="at">post =</span> <span class="dv">3</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                      <span class="at">pre =</span> <span class="dv">0</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">summary</span>(results<span class="sc">$</span>output)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt; estimatr::lm_robust(formula = prepared_model_formula, data = prepared_data, </span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;     clusters = get(idvar), fixed_effects = ~get(idvar) + get(timevar), </span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt;     se_type = &quot;stata&quot;)</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; Standard error type:  stata </span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;            Estimate Std. Error t value  Pr(&gt;|t|) CI Lower CI Upper DF</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt; z_lead3      0.2390     0.1433  1.6683 1.016e-01 -0.04891   0.5270 49</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt; z_fd_lead3   0.1752     0.1618  1.0829 2.842e-01 -0.14997   0.5004 49</span></span>
-<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; z_fd_lead2   0.1238     0.1748  0.7085 4.820e-01 -0.22744   0.4751 49</span></span>
-<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; z_fd         0.8309     0.1332  6.2355 1.014e-07  0.56309   1.0986 49</span></span>
-<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; z_fd_lag1    0.8552     0.1766  4.8419 1.328e-05  0.50024   1.2101 49</span></span>
-<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; z_fd_lag2    0.6326     0.1538  4.1123 1.491e-04  0.32347   0.9417 49</span></span>
-<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; z_fd_lag3    0.2464     0.1830  1.3465 1.843e-01 -0.12132   0.6140 49</span></span>
-<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; z_lag4       0.1428     0.1270  1.1241 2.664e-01 -0.11244   0.3979 49</span></span>
-<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.9997 ,    Adjusted R-squared:  0.9997</span></span>
-<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared (proj. model):  0.05327 , Adjusted R-squared (proj. model):  -0.001353 </span></span>
-<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; F-statistic (proj. model): 10.44 on 8 and 49 DF,  p-value: 2.142e-08</span></span></code></pre></div>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                      <span class="at">post =</span> <span class="dv">3</span>, <span class="at">pre =</span> <span class="dv">0</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                      <span class="at">kernel =</span> <span class="st">&quot;fixest&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; NOTE: 350 observations removed because of NA values (RHS: 350).</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">summary</span>(results<span class="sc">$</span>output)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt; OLS estimation, Dep. Var.: y_jump_m</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; Observations: 1,650</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; Fixed-effects: id: 50,  t: 33</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; Standard-errors: Clustered (id) </span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;            Estimate Std. Error  t value   Pr(&gt;|t|)    </span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; z_lead3    0.239047   0.143291 1.668259 1.0164e-01    </span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; z_fd_lead3 0.175241   0.161829 1.082876 2.8416e-01    </span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; z_fd_lead2 0.123848   0.174806 0.708486 4.8200e-01    </span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; z_fd       0.830860   0.133247 6.235477 1.0137e-07 ***</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; z_fd_lag1  0.855168   0.176619 4.841873 1.3276e-05 ***</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; z_fd_lag2  0.632607   0.153833 4.112303 1.4907e-04 ***</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; z_fd_lag3  0.246352   0.182958 1.346493 1.8434e-01    </span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; z_lag4     0.142752   0.126989 1.124128 2.6644e-01    </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; RMSE: 0.694438     Adj. R2: 0.055505</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt;                  Within R2: 0.053267</span></span></code></pre></div>
 <details>
 <summary>
 Click for <code>results$arguments</code>
 </summary>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>  <span class="do">## Estimator</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>estimator</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;OLS&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  </span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="do">## Data</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="co">#&gt;   id eventtime t z     y_base eta_m y_jump_m y_smooth_m    x_jump_m eta_r</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="co">#&gt; 1  1        32 1 0 -0.6087238  0.18 41.57128   41.57128  0.68367314     1</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="co">#&gt; 2  1        32 2 0 -0.8699341  0.18 41.31007   41.31007  0.01667022     1</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="co">#&gt; 3  1        32 3 0 -0.9059790  0.18 41.27402   41.27402  0.15259252     1</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  <span class="co">#&gt; 4  1        32 4 0  0.1482184  0.18 42.32822   42.32822 -0.93015540     1</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  <span class="co">#&gt; 5  1        32 5 0  0.5785761  0.18 42.75858   42.75858 -0.31635490     1</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>  <span class="co">#&gt;        y_r       x_r z_fd z_fd_lag1 z_fd_lag2 z_fd_lag3 z_fd_lead3 z_fd_lead2</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>  <span class="co">#&gt; 1 1.891276 0.5520976   NA        NA        NA        NA          0          0</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  <span class="co">#&gt; 2 1.630066 2.3021448    0        NA        NA        NA          0          0</span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>  <span class="co">#&gt; 3 1.594021 1.0289093    0         0        NA        NA          0          0</span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>  <span class="co">#&gt; 4 2.648218 0.2615794    0         0         0        NA          0          0</span></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>  <span class="co">#&gt; 5 3.078576 1.2146608    0         0         0         0          0          0</span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>  <span class="co">#&gt;   z_fd_lead1 z_lag4 z_lead3</span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>  <span class="co">#&gt; 1          0     NA       1</span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>  <span class="co">#&gt; 2          0     NA       1</span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>  <span class="co">#&gt; 3          0     NA       1</span></span>
-<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>  <span class="co">#&gt; 4          0     NA       1</span></span>
-<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>  <span class="co">#&gt; 5          0      0       1</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>  <span class="do">## Estimator</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>estimator</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;OLS&quot;</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>  </span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="do">## Variables</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>outcomevar</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;y_jump_m&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>outcomevar</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;y_jump_m&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>policyvar</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>idvar</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;id&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>timevar</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;t&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>controls</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>  </span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="do">## Proxies</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>proxy</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>proxyIV</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>  </span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="do">## Fixed effects</span></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>FE</span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>TFE</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>  </span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="do">## Periods</span></span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>post</span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="co">#&gt; [1] 3</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>overidpost</span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  <span class="co">#&gt; [1] 1</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>pre</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>  <span class="co">#&gt; [1] 0</span></span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>overidpre</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>  <span class="co">#&gt; [1] 3</span></span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>  </span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  <span class="do">## Normalization</span></span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>normalize</span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>  <span class="co">#&gt; [1] -1</span></span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>normalization_column</span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z_fd_lead1&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>  </span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>  <span class="do">## Cluster</span></span>
-<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>cluster</span>
-<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="do">## Data</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,]</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="co">#&gt;       id eventtime     t     z     y_base eta_m y_jump_m y_smooth_m    x_jump_m</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="co">#&gt;    &lt;num&gt;     &lt;num&gt; &lt;num&gt; &lt;num&gt;      &lt;num&gt; &lt;num&gt;    &lt;num&gt;      &lt;num&gt;       &lt;num&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  <span class="co">#&gt; 1:     1        32     1     0 -0.6087238  0.18 41.57128   41.57128  0.68367314</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="co">#&gt; 2:     1        32     2     0 -0.8699341  0.18 41.31007   41.31007  0.01667022</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="co">#&gt; 3:     1        32     3     0 -0.9059790  0.18 41.27402   41.27402  0.15259252</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="co">#&gt; 4:     1        32     4     0  0.1482184  0.18 42.32822   42.32822 -0.93015540</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  <span class="co">#&gt; 5:     1        32     5     0  0.5785761  0.18 42.75858   42.75858 -0.31635490</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  <span class="co">#&gt;    eta_r      y_r       x_r  z_fd z_fd_lag1 z_fd_lag2 z_fd_lag3 z_fd_lead3</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  <span class="co">#&gt;    &lt;num&gt;    &lt;num&gt;     &lt;num&gt; &lt;num&gt;     &lt;num&gt;     &lt;num&gt;     &lt;num&gt;      &lt;num&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>  <span class="co">#&gt; 1:     1 1.891276 0.5520976    NA        NA        NA        NA          0</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>  <span class="co">#&gt; 2:     1 1.630066 2.3021448     0        NA        NA        NA          0</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>  <span class="co">#&gt; 3:     1 1.594021 1.0289093     0         0        NA        NA          0</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>  <span class="co">#&gt; 4:     1 2.648218 0.2615794     0         0         0        NA          0</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>  <span class="co">#&gt; 5:     1 3.078576 1.2146608     0         0         0         0          0</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>  <span class="co">#&gt;    z_fd_lead2 z_fd_lead1 z_lag4 z_lead3</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a>  <span class="co">#&gt;         &lt;num&gt;      &lt;num&gt;  &lt;num&gt;   &lt;num&gt;</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>  <span class="co">#&gt; 1:          0          0     NA       1</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>  <span class="co">#&gt; 2:          0          0     NA       1</span></span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>  <span class="co">#&gt; 3:          0          0     NA       1</span></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a>  <span class="co">#&gt; 4:          0          0     NA       1</span></span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a>  <span class="co">#&gt; 5:          0          0      0       1</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>  </span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="do">## Variables</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>outcomevar</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;y_jump_m&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>outcomevar</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;y_jump_m&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>policyvar</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>idvar</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;id&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>timevar</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;t&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>controls</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  </span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="do">## Proxies</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>proxy</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>proxyIV</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="co">#&gt; NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  </span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="do">## Fixed effects</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>FE</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>TFE</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>  </span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  <span class="do">## Periods</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>post</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="co">#&gt; [1] 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>overidpost</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>  <span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>pre</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>  <span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>overidpre</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  <span class="co">#&gt; [1] 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>  </span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>  <span class="do">## Normalization</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>normalize</span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>  <span class="co">#&gt; [1] -1</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>normalization_column</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z_fd_lead1&quot;</span></span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>  </span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>  <span class="do">## Eventstudy coefficients</span></span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>eventstudy_coefficients</span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z_lead3&quot;    &quot;z_fd_lead3&quot; &quot;z_fd_lead2&quot; &quot;z_fd&quot;       &quot;z_fd_lag1&quot; </span></span>
-<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>  <span class="co">#&gt; [6] &quot;z_fd_lag2&quot;  &quot;z_fd_lag3&quot;  &quot;z_lag4&quot;</span></span></code></pre></div>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>  <span class="do">## Cluster</span></span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>cluster</span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>  <span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>  </span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>  <span class="do">## Eventstudy coefficients</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>  results<span class="sc">$</span>arguments<span class="sc">$</span>eventstudy_coefficients</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>  <span class="co">#&gt; [1] &quot;z_lead3&quot;    &quot;z_fd_lead3&quot; &quot;z_fd_lead2&quot; &quot;z_fd&quot;       &quot;z_fd_lag1&quot; </span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>  <span class="co">#&gt; [6] &quot;z_fd_lag2&quot;  &quot;z_fd_lag3&quot;  &quot;z_lag4&quot;</span></span></code></pre></div>
 </details>
 </div>
 <div id="eventstudyplot" class="section level2">
@@ -519,19 +519,20 @@ the suggestions in Freyaldenhoven et al. (2021).</p>
 <p>This function is designed to use the output of the
 <code>EventStudy()</code> and returns a ggplot object. Here is an
 example of using the function with some default settings:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>eventstudy_estimates_ols <span class="ot">&lt;-</span> <span class="fu">EventStudy</span>(<span class="at">estimator =</span> <span class="st">&quot;OLS&quot;</span>,</span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>                                       <span class="at">data =</span> example_data,</span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>                                       <span class="at">outcomevar =</span> <span class="st">&quot;y_jump_m&quot;</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>                                       <span class="at">policyvar =</span> <span class="st">&quot;z&quot;</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>                                       <span class="at">idvar =</span> <span class="st">&quot;id&quot;</span>,</span>
-<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>                                       <span class="at">timevar =</span> <span class="st">&quot;t&quot;</span>,</span>
-<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>                                       <span class="at">post =</span> <span class="dv">3</span>,</span>
-<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>                                       <span class="at">pre =</span> <span class="dv">0</span>)</span>
-<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a> </span>
-<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a><span class="fu">EventStudyPlot</span>(<span class="at">estimates =</span> eventstudy_estimates_ols,</span>
-<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a>               <span class="at">xtitle =</span> <span class="st">&quot;Event time&quot;</span>,</span>
-<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>               <span class="at">ytitle =</span> <span class="st">&quot;Coefficient&quot;</span>)</span></code></pre></div>
-<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>eventstudy_estimates_ols <span class="ot">&lt;-</span> <span class="fu">EventStudy</span>(<span class="at">estimator =</span> <span class="st">&quot;OLS&quot;</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>                                       <span class="at">data =</span> example_data,</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>                                       <span class="at">outcomevar =</span> <span class="st">&quot;y_jump_m&quot;</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a>                                       <span class="at">policyvar =</span> <span class="st">&quot;z&quot;</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>                                       <span class="at">idvar =</span> <span class="st">&quot;id&quot;</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>                                       <span class="at">timevar =</span> <span class="st">&quot;t&quot;</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>                                       <span class="at">post =</span> <span class="dv">3</span>, <span class="at">pre =</span> <span class="dv">0</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" tabindex="-1"></a>                                       <span class="at">kernel =</span> <span class="st">&quot;fixest&quot;</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" tabindex="-1"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: 350 observations removed because of NA values (RHS: 350).</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a> </span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">EventStudyPlot</span>(<span class="at">estimates =</span> eventstudy_estimates_ols,</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>               <span class="at">xtitle =</span> <span class="st">&quot;Event time&quot;</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>               <span class="at">ytitle =</span> <span class="st">&quot;Coefficient&quot;</span>)</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
