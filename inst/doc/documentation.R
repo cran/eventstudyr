@@ -13,14 +13,14 @@ dim(example_data)
 head(example_data)
 
 ## ----Basic Eventstudy Example - Show Code, eval = FALSE-----------------------
-#  results <- EventStudy(estimator = "OLS",
-#                        data = example_data,
-#                        outcomevar = "y_jump_m",
-#                        policyvar = "z",
-#                        idvar = "id",
-#                        timevar = "t",
-#                        post = 3, pre = 0,
-#                        kernel = "fixest")
+# results <- EventStudy(estimator = "OLS",
+#                       data = example_data,
+#                       outcomevar = "y_jump_m",
+#                       policyvar = "z",
+#                       idvar = "id",
+#                       timevar = "t",
+#                       post = 3, pre = 0,
+#                       kernel = "fixest")
 
 ## ----Basic Eventstudy Example - Run Code, echo = FALSE------------------------
 results <- EventStudy(estimator = "OLS",
